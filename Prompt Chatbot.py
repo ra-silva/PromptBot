@@ -5,14 +5,17 @@ from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.memory import ConversationBufferMemory
 import re
+import os
 
-
-# Split questions
+# Function to Split questions
 def questions_brekdown(ai_response):
     pattern = r'^(?:\d+\.|\-|\*).*?(\n(?![\d+\.\-\*]).*|$)'
     matches = re.finditer(pattern, ai_response, re.MULTILINE | re.DOTALL)
     split_items = [match.group(0).strip() for match in matches]
     return split_items
+
+# Load Open AI Key
+os.environ['OPENAI_API_KEY'] = "OPEN_AI_KEY"
 
 # Load LLMs
 gpt3 = ChatOpenAI(temperature=0.6,model='gpt-3.5-turbo-16k')
