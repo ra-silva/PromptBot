@@ -85,7 +85,7 @@ except:
 
 # Ask final prompt to GPT4
 # Load GPT4
-gpt4 = OpenAI(temperature=0.6)
+gpt4 = OpenAI(temperature=0.6, model="gpt-4")
 
 # Initiate
 template = """Question: {question}
